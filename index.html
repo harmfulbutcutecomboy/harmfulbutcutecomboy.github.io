@@ -72,10 +72,6 @@
             --nav-logo-width: 120px;
             --nav-logo-height: 40px;
             
-            --entry-logo-image: url('./images/comgirl.png');
-            --entry-logo-width: 300px;
-            --entry-logo-height: 100px;
-            
             --hero-logo-image: url('./images/comgirl.png');
             --hero-logo-width: 400px;
             --hero-logo-height: 120px;
@@ -83,7 +79,6 @@
             /* LOGO FALLBACK TEXT */
             --logo-fallback-text: "";
             --hero-fallback-text: "";
-            --entry-fallback-text: "";
             
             /* CURSOR CONFIGURATION */
             --cursor-enabled: true; /* Set to false to use default cursor */
@@ -365,35 +360,6 @@
 
         .entry-content {
             padding: 0 20px;
-        }
-
-        .entry-logo {
-            width: var(--entry-logo-width);
-            height: var(--entry-logo-height);
-            background-image: var(--entry-logo-image);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            margin: 0 auto 30px;
-            filter: drop-shadow(0 0 30px rgba(247, 215, 248, 0.5));
-            animation: glow var(--glow-animation-duration) ease-in-out infinite alternate;
-        }
-
-        .entry-logo::after {
-            content: var(--entry-fallback-text);
-            font-size: 5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-family: var(--font-decorative);
-            display: none;
-        }
-
-        .entry-logo[src=""], .entry-logo:not([style*="background-image"]) {
-            background-image: none;
-        }
-
-        .entry-logo[src=""]::after, .entry-logo:not([style*="background-image"])::after {
-            display: block;
         }
 
         .entry-subtitle {
@@ -1164,11 +1130,6 @@
                 font-size: 0.9rem;
             }
 
-            .entry-logo {
-                width: calc(var(--entry-logo-width) * 0.7);
-                height: calc(var(--entry-logo-height) * 0.7);
-            }
-
             .hero-logo {
                 width: calc(var(--hero-logo-width) * 0.7);
                 height: calc(var(--hero-logo-height) * 0.7);
@@ -1209,7 +1170,6 @@
     <!-- Entry Screen -->
     <div class="entry-screen" id="entryScreen" onclick="enterSite()">
         <div class="entry-content">
-            <div class="entry-logo"></div>
             <div class="entry-subtitle"></div>
             <div class="entry-prompt">Press anywhere to enter</div>
         </div>
