@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">comgirl</title>
     <style>
-        /* ===========================================
+        /* ===============
            FONT IMPORTS - Add your local font files here
-           =========================================== */
+           =============== */
         @font-face {
             font-family: 'CustomPrimary';
             src: url('./fonts/primary-regular.woff2') format('woff2'),
@@ -58,9 +58,9 @@
             font-display: swap;
         }
 
-        /* ===========================================
+        /* ===============
            CONFIGURATION SECTION - EDIT THESE VALUES
-           =========================================== */
+           =============== */
         :root {
             /* SITE BRANDING */
             --site-title: "comgirl";
@@ -68,22 +68,173 @@
             --entry-subtitle: "@imesexdeprived says hi, this page is needed to auto-play music. ^_^";
             
             /* LOGO CONFIGURATION */
-            --nav-logo-image: url('./images/logo-nav.png');  /* Small logo for navbar */
+            --nav-logo-image: url('./images/logo-nav.png');
             --nav-logo-width: 120px;
             --nav-logo-height: 40px;
             
-            --entry-logo-image: url('./images/logo-entry.png');  /* Large logo for entry screen */
+            --entry-logo-image: url('./images/logo-entry.png');
             --entry-logo-width: 300px;
             --entry-logo-height: 100px;
             
-            --hero-logo-image: url('./images/logo-hero.png');  /* Hero section logo */
+            --hero-logo-image: url('./images/logo-hero.png');
             --hero-logo-width: 400px;
             --hero-logo-height: 120px;
             
-            /* LOGO FALLBACK TEXT (if images don't load) */
-            --logo-fallback-text: "YourBot";
-            --hero-fallback-text: "YourBot";
-            --entry-fallback-text: "YourBot";
+            /* LOGO FALLBACK TEXT */
+            --logo-fallback-text: "comgirl";
+            --hero-fallback-text: "comgirl";
+            --entry-fallback-text: "comgirl";
+            
+            /* CURSOR CONFIGURATION */
+            --cursor-enabled: true; /* Set to false to use default cursor */
+            --cursor-image: url('./images/cursor.png'); /* Your cursor image/gif */
+            --cursor-size: 32px; /* Size of cursor */
+            
+            /* CURSOR TRAIL CONFIGURATION */
+            --cursor-trail-enabled: true; /* Set to false to disable trail */
+            --cursor-trail-image: url('./images/trail.gif'); /* Your trail image/gif */
+            --cursor-trail-size: 24px; /* Size of trail elements */
+            --cursor-trail-count: 8; /* Number of trail elements */
+            --cursor-trail-fade-speed: 0.8s; /* How fast trail fades */
+            
+            /* NOW PLAYING POPUP CONFIGURATION */
+            --now-playing-enabled: true;
+            --now-playing-song-name: "love.";
+            --now-playing-artist: "wave to earth";
+            --now-playing-requester: "@imesexdeprived";
+            --now-playing-thumbnail: url('./images/love.jpg');
+            --now-playing-display-duration: 6000;
+            --now-playing-slide-duration: 0.8s;
+            --now-playing-background: rgba(247, 215, 248, 0.1);
+            --now-playing-border: rgba(247, 215, 248, 0.3);
+            --now-playing-text-primary: #F7D7F8;
+            --now-playing-text-secondary: rgba(255, 255, 255, 0.8);
+            
+            /* COMMANDS CONFIGURATION */
+            /* Moderation Commands - Copy this block to add more */
+            --mod-cmd-1-name: "/ban";
+            --mod-cmd-1-desc: "Ban a user from the server with optional reason and duration.";
+            --mod-cmd-1-usage: "/ban @user [reason] [duration]";
+            
+            --mod-cmd-2-name: "/kick";
+            --mod-cmd-2-desc: "Kick a user from the server with an optional reason.";
+            --mod-cmd-2-usage: "/kick @user [reason]";
+            
+            --mod-cmd-3-name: "/mute";
+            --mod-cmd-3-desc: "Temporarily mute a user in all channels.";
+            --mod-cmd-3-usage: "/mute @user [duration] [reason]";
+            
+            --mod-cmd-4-name: "/warn";
+            --mod-cmd-4-desc: "Issue a warning to a user with automatic punishment escalation.";
+            --mod-cmd-4-usage: "/warn @user [reason]";
+            
+            --mod-cmd-5-name: "/purge";
+            --mod-cmd-5-desc: "Delete multiple messages at once from a channel.";
+            --mod-cmd-5-usage: "/purge [amount] [@user]";
+            
+            --mod-cmd-6-name: "/automod";
+            --mod-cmd-6-desc: "Configure automatic moderation settings for your server.";
+            --mod-cmd-6-usage: "/automod [setting] [value]";
+            
+            /* Fun Commands - Copy this block to add more */
+            --fun-cmd-1-name: "/trivia";
+            --fun-cmd-1-desc: "Start a trivia game with questions from various categories.";
+            --fun-cmd-1-usage: "/trivia [category] [difficulty]";
+            
+            --fun-cmd-2-name: "/8ball";
+            --fun-cmd-2-desc: "Ask the magic 8-ball a question and receive a mystical answer.";
+            --fun-cmd-2-usage: "/8ball [question]";
+            
+            --fun-cmd-3-name: "/meme";
+            --fun-cmd-3-desc: "Get a random meme from popular subreddits.";
+            --fun-cmd-3-usage: "/meme [subreddit]";
+            
+            --fun-cmd-4-name: "/dice";
+            --fun-cmd-4-desc: "Roll dice with customizable sides and quantity.";
+            --fun-cmd-4-usage: "/dice [sides] [quantity]";
+            
+            --fun-cmd-5-name: "/joke";
+            --fun-cmd-5-desc: "Get a random joke to lighten the mood.";
+            --fun-cmd-5-usage: "/joke [category]";
+            
+            --fun-cmd-6-name: "/quote";
+            --fun-cmd-6-desc: "Get an inspirational or funny quote.";
+            --fun-cmd-6-usage: "/quote [type]";
+            
+            /* Utility Commands - Copy this block to add more */
+            --util-cmd-1-name: "/serverinfo";
+            --util-cmd-1-desc: "Display detailed information about the current server.";
+            --util-cmd-1-usage: "/serverinfo";
+            
+            --util-cmd-2-name: "/userinfo";
+            --util-cmd-2-desc: "Show information about a specific user or yourself.";
+            --util-cmd-2-usage: "/userinfo [@user]";
+            
+            --util-cmd-3-name: "/reminder";
+            --util-cmd-3-desc: "Set a reminder that the bot will send you after a specified time.";
+            --util-cmd-3-usage: "/reminder [time] [message]";
+            
+            --util-cmd-4-name: "/poll";
+            --util-cmd-4-desc: "Create a poll with multiple options for your server members.";
+            --util-cmd-4-usage: "/poll [question] [option1] [option2]...";
+            
+            --util-cmd-5-name: "/avatar";
+            --util-cmd-5-desc: "Display a user's avatar in full resolution.";
+            --util-cmd-5-usage: "/avatar [@user]";
+            
+            --util-cmd-6-name: "/translate";
+            --util-cmd-6-desc: "Translate text between different languages.";
+            --util-cmd-6-usage: "/translate [language] [text]";
+            
+            /* Music Commands - Copy this block to add more */
+            --music-cmd-1-name: "/play";
+            --music-cmd-1-desc: "Play music from YouTube, Spotify, or other platforms.";
+            --music-cmd-1-usage: "/play [song/url]";
+            
+            --music-cmd-2-name: "/skip";
+            --music-cmd-2-desc: "Skip the currently playing song.";
+            --music-cmd-2-usage: "/skip";
+            
+            --music-cmd-3-name: "/queue";
+            --music-cmd-3-desc: "Display the current music queue.";
+            --music-cmd-3-usage: "/queue";
+            
+            --music-cmd-4-name: "/pause";
+            --music-cmd-4-desc: "Pause or resume the current song.";
+            --music-cmd-4-usage: "/pause";
+            
+            --music-cmd-5-name: "/volume";
+            --music-cmd-5-desc: "Adjust the music playback volume.";
+            --music-cmd-5-usage: "/volume [0-100]";
+            
+            --music-cmd-6-name: "/playlist";
+            --music-cmd-6-desc: "Create and manage custom playlists.";
+            --music-cmd-6-usage: "/playlist [create/add/remove] [name]";
+            
+            /* Economy Commands - Copy this block to add more */
+            --econ-cmd-1-name: "/balance";
+            --econ-cmd-1-desc: "Check your current balance and bank account.";
+            --econ-cmd-1-usage: "/balance [@user]";
+            
+            --econ-cmd-2-name: "/daily";
+            --econ-cmd-2-desc: "Claim your daily reward and streak bonus.";
+            --econ-cmd-2-usage: "/daily";
+            
+            --econ-cmd-3-name: "/work";
+            --econ-cmd-3-desc: "Work various jobs to earn money.";
+            --econ-cmd-3-usage: "/work [job]";
+            
+            --econ-cmd-4-name: "/shop";
+            --econ-cmd-4-desc: "Browse and purchase items from the server shop.";
+            --econ-cmd-4-usage: "/shop [buy/sell] [item]";
+            
+            --econ-cmd-5-name: "/gamble";
+            --econ-cmd-5-desc: "Try your luck with various gambling games.";
+            --econ-cmd-5-usage: "/gamble [game] [amount]";
+            
+            --econ-cmd-6-name: "/leaderboard";
+            --econ-cmd-6-desc: "View the richest members in your server.";
+            --econ-cmd-6-usage: "/leaderboard [global/server]";
             
             /* COLORS */
             --primary-color: #F7D7F8;
@@ -118,12 +269,11 @@
             --background-music-url: "love.mp3";
             --music-volume: 0.3;
             
-            /* ANIMATION SETTINGS */
-/* PARTICLE SETTINGS */
---particle-count: 20; /* Number of particles */
---particle-animation-duration: 8s; /* How long each particle takes to float up */
---particle-spawn-delay: 0.4s; /* Delay between each particle spawn */
---particle-drift-range: 100px; /* How much particles drift horizontally */
+            /* PARTICLE SETTINGS */
+            --particle-count: 20;
+            --particle-animation-duration: 8s;
+            --particle-spawn-delay: 0.4s;
+            --particle-drift-range: 100px;
             --glow-animation-duration: 2s;
             --transition-speed: 0.3s;
             
@@ -132,10 +282,52 @@
             --entry-blur: 10px;
         }
 
+        /* Custom Cursor */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: none !important; /* Hide default cursor when custom is enabled */
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            background-image: var(--cursor-image);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            display: none;
+        }
+
+        .custom-cursor.enabled {
+            display: block;
+        }
+
+        /* Cursor Trail */
+        .cursor-trail {
+            position: fixed;
+            width: var(--cursor-trail-size);
+            height: var(--cursor-trail-size);
+            background-image: var(--cursor-trail-image);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity var(--cursor-trail-fade-speed) ease;
+        }
+
+        /* Show default cursor when custom cursor is disabled */
+        body:not(.custom-cursor-enabled) * {
+            cursor: auto !important;
         }
 
         body {
@@ -162,7 +354,6 @@
             align-items: center;
             z-index: 10000;
             transition: opacity 1s ease, visibility 1s ease;
-            cursor: pointer;
             text-align: center;
         }
 
@@ -188,7 +379,6 @@
             animation: glow var(--glow-animation-duration) ease-in-out infinite alternate;
         }
 
-        /* Fallback text if image doesn't load */
         .entry-logo::after {
             content: var(--entry-fallback-text);
             font-size: 5rem;
@@ -222,6 +412,102 @@
             color: var(--primary-color);
             opacity: 0.8;
             animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Now Playing Popup Styles */
+        .now-playing-popup {
+            position: fixed;
+            top: 50%;
+            left: -400px;
+            transform: translateY(-50%);
+            width: 350px;
+            background: var(--now-playing-background);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--now-playing-border);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transition: left var(--now-playing-slide-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 32px rgba(247, 215, 248, 0.1);
+        }
+
+        .now-playing-popup.show {
+            left: 20px;
+        }
+
+        .now-playing-thumbnail {
+            width: 60px;
+            height: 60px;
+            background-image: var(--now-playing-thumbnail);
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .now-playing-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .now-playing-title {
+            font-size: 0.9rem;
+            color: var(--now-playing-text-secondary);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .now-playing-song {
+            font-size: 1.1rem;
+            color: var(--now-playing-text-primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: var(--font-secondary);
+        }
+
+        .now-playing-artist {
+            font-size: 0.85rem;
+            color: var(--now-playing-text-secondary);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .now-playing-requester {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0.8;
+        }
+
+        .now-playing-song::before {
+            content: var(--now-playing-song-name);
+        }
+
+        .now-playing-artist::before {
+            content: "Artist: ";
+        }
+
+        .now-playing-artist::after {
+            content: var(--now-playing-artist);
+        }
+
+        .now-playing-requester::before {
+            content: "via ";
+        }
+
+        .now-playing-requester::after {
+            content: var(--now-playing-requester);
         }
 
         @keyframes glow {
@@ -297,7 +583,6 @@
             transform: scale(1.05);
         }
 
-        /* Fallback text for nav logo */
         .logo::after {
             content: var(--logo-fallback-text);
             font-size: 24px;
@@ -366,7 +651,6 @@
             animation: glow var(--glow-animation-duration) ease-in-out infinite alternate;
         }
 
-        /* Fallback text for hero logo */
         .hero-logo::after {
             content: var(--hero-fallback-text);
             font-size: var(--hero-font-size);
@@ -414,7 +698,6 @@
             position: relative;
             overflow: hidden;
             border: none;
-            cursor: pointer;
             font-size: 16px;
             font-family: var(--font-primary);
         }
@@ -562,77 +845,74 @@
             z-index: -1;
         }
 
-/* Floating Particles Styles */
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: floatUp var(--particle-animation-duration, 8s) ease-in-out infinite;
-    pointer-events: none;
-}
+        /* Floating Particles Styles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatUp var(--particle-animation-duration, 8s) ease-in-out infinite;
+            pointer-events: none;
+        }
 
-.particle::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    border-radius: inherit;
-    filter: blur(1px);
-    opacity: 0.5;
-}
+        .particle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(1px);
+            opacity: 0.5;
+        }
 
-/* Different particle sizes */
-.particle.small {
-    width: 2px;
-    height: 2px;
-}
+        .particle.small {
+            width: 2px;
+            height: 2px;
+        }
 
-.particle.medium {
-    width: 4px;
-    height: 4px;
-}
+        .particle.medium {
+            width: 4px;
+            height: 4px;
+        }
 
-.particle.large {
-    width: 6px;
-    height: 6px;
-}
+        .particle.large {
+            width: 6px;
+            height: 6px;
+        }
 
-/* Different particle colors/opacity variations */
-.particle.dim {
-    opacity: 0.3;
-}
+        .particle.dim {
+            opacity: 0.3;
+        }
 
-.particle.bright {
-    opacity: 0.8;
-    box-shadow: 0 0 6px var(--primary-color);
-}
+        .particle.bright {
+            opacity: 0.8;
+            box-shadow: 0 0 6px var(--primary-color);
+        }
 
-.particle.secondary {
-    background: var(--text-secondary);
-}
+        .particle.secondary {
+            background: var(--text-secondary);
+        }
 
-/* Float upward animation */
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh) translateX(0px) scale(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.6;
-        transform: scale(1);
-    }
-    90% {
-        opacity: 0.6;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(var(--random-x, 50px)) scale(0);
-        opacity: 0;
-    }
-}
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) translateX(0px) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(var(--random-x, 50px)) scale(0);
+                opacity: 0;
+            }
+        }
 
         .commands-section {
             background: rgba(247, 215, 248, 0.02);
@@ -659,7 +939,6 @@
             border: 1px solid rgba(247, 215, 248, 0.2);
             border-radius: 25px;
             color: var(--text-secondary);
-            cursor: pointer;
             transition: all var(--transition-speed) ease;
             font-weight: 500;
             font-family: var(--font-secondary);
@@ -731,14 +1010,130 @@
             animation: fadeIn 0.5s ease;
         }
 
+        /* Command content using CSS variables */
+        .mod-cmd-1 .command-name::after { content: var(--mod-cmd-1-name); }
+        .mod-cmd-1 .command-description::after { content: var(--mod-cmd-1-desc); }
+        .mod-cmd-1 .command-usage::after { content: var(--mod-cmd-1-usage); }
+
+        .mod-cmd-2 .command-name::after { content: var(--mod-cmd-2-name); }
+        .mod-cmd-2 .command-description::after { content: var(--mod-cmd-2-desc); }
+        .mod-cmd-2 .command-usage::after { content: var(--mod-cmd-2-usage); }
+
+        .mod-cmd-3 .command-name::after { content: var(--mod-cmd-3-name); }
+        .mod-cmd-3 .command-description::after { content: var(--mod-cmd-3-desc); }
+        .mod-cmd-3 .command-usage::after { content: var(--mod-cmd-3-usage); }
+
+        .mod-cmd-4 .command-name::after { content: var(--mod-cmd-4-name); }
+        .mod-cmd-4 .command-description::after { content: var(--mod-cmd-4-desc); }
+        .mod-cmd-4 .command-usage::after { content: var(--mod-cmd-4-usage); }
+
+        .mod-cmd-5 .command-name::after { content: var(--mod-cmd-5-name); }
+        .mod-cmd-5 .command-description::after { content: var(--mod-cmd-5-desc); }
+        .mod-cmd-5 .command-usage::after { content: var(--mod-cmd-5-usage); }
+
+        .mod-cmd-6 .command-name::after { content: var(--mod-cmd-6-name); }
+        .mod-cmd-6 .command-description::after { content: var(--mod-cmd-6-desc); }
+        .mod-cmd-6 .command-usage::after { content: var(--mod-cmd-6-usage); }
+
+        .fun-cmd-1 .command-name::after { content: var(--fun-cmd-1-name); }
+        .fun-cmd-1 .command-description::after { content: var(--fun-cmd-1-desc); }
+        .fun-cmd-1 .command-usage::after { content: var(--fun-cmd-1-usage); }
+
+        .fun-cmd-2 .command-name::after { content: var(--fun-cmd-2-name); }
+        .fun-cmd-2 .command-description::after { content: var(--fun-cmd-2-desc); }
+        .fun-cmd-2 .command-usage::after { content: var(--fun-cmd-2-usage); }
+
+        .fun-cmd-3 .command-name::after { content: var(--fun-cmd-3-name); }
+        .fun-cmd-3 .command-description::after { content: var(--fun-cmd-3-desc); }
+        .fun-cmd-3 .command-usage::after { content: var(--fun-cmd-3-usage); }
+
+        .fun-cmd-4 .command-name::after { content: var(--fun-cmd-4-name); }
+        .fun-cmd-4 .command-description::after { content: var(--fun-cmd-4-desc); }
+        .fun-cmd-4 .command-usage::after { content: var(--fun-cmd-4-usage); }
+
+        .fun-cmd-5 .command-name::after { content: var(--fun-cmd-5-name); }
+        .fun-cmd-5 .command-description::after { content: var(--fun-cmd-5-desc); }
+        .fun-cmd-5 .command-usage::after { content: var(--fun-cmd-5-usage); }
+
+        .fun-cmd-6 .command-name::after { content: var(--fun-cmd-6-name); }
+        .fun-cmd-6 .command-description::after { content: var(--fun-cmd-6-desc); }
+        .fun-cmd-6 .command-usage::after { content: var(--fun-cmd-6-usage); }
+
+        .util-cmd-1 .command-name::after { content: var(--util-cmd-1-name); }
+        .util-cmd-1 .command-description::after { content: var(--util-cmd-1-desc); }
+        .util-cmd-1 .command-usage::after { content: var(--util-cmd-1-usage); }
+
+        .util-cmd-2 .command-name::after { content: var(--util-cmd-2-name); }
+        .util-cmd-2 .command-description::after { content: var(--util-cmd-2-desc); }
+        .util-cmd-2 .command-usage::after { content: var(--util-cmd-2-usage); }
+
+        .util-cmd-3 .command-name::after { content: var(--util-cmd-3-name); }
+        .util-cmd-3 .command-description::after { content: var(--util-cmd-3-desc); }
+        .util-cmd-3 .command-usage::after { content: var(--util-cmd-3-usage); }
+
+        .util-cmd-4 .command-name::after { content: var(--util-cmd-4-name); }
+        .util-cmd-4 .command-description::after { content: var(--util-cmd-4-desc); }
+        .util-cmd-4 .command-usage::after { content: var(--util-cmd-4-usage); }
+
+        .util-cmd-5 .command-name::after { content: var(--util-cmd-5-name); }
+        .util-cmd-5 .command-description::after { content: var(--util-cmd-5-desc); }
+        .util-cmd-5 .command-usage::after { content: var(--util-cmd-5-usage); }
+
+        .util-cmd-6 .command-name::after { content: var(--util-cmd-6-name); }
+        .util-cmd-6 .command-description::after { content: var(--util-cmd-6-desc); }
+        .util-cmd-6 .command-usage::after { content: var(--util-cmd-6-usage); }
+
+        .music-cmd-1 .command-name::after { content: var(--music-cmd-1-name); }
+        .music-cmd-1 .command-description::after { content: var(--music-cmd-1-desc); }
+        .music-cmd-1 .command-usage::after { content: var(--music-cmd-1-usage); }
+
+        .music-cmd-2 .command-name::after { content: var(--music-cmd-2-name); }
+        .music-cmd-2 .command-description::after { content: var(--music-cmd-2-desc); }
+        .music-cmd-2 .command-usage::after { content: var(--music-cmd-2-usage); }
+
+        .music-cmd-3 .command-name::after { content: var(--music-cmd-3-name); }
+        .music-cmd-3 .command-description::after { content: var(--music-cmd-3-desc); }
+        .music-cmd-3 .command-usage::after { content: var(--music-cmd-3-usage); }
+
+        .music-cmd-4 .command-name::after { content: var(--music-cmd-4-name); }
+        .music-cmd-4 .command-description::after { content: var(--music-cmd-4-desc); }
+        .music-cmd-4 .command-usage::after { content: var(--music-cmd-4-usage); }
+
+        .music-cmd-5 .command-name::after { content: var(--music-cmd-5-name); }
+        .music-cmd-5 .command-description::after { content: var(--music-cmd-5-desc); }
+        .music-cmd-5 .command-usage::after { content: var(--music-cmd-5-usage); }
+
+        .music-cmd-6 .command-name::after { content: var(--music-cmd-6-name); }
+        .music-cmd-6 .command-description::after { content: var(--music-cmd-6-desc); }
+        .music-cmd-6 .command-usage::after { content: var(--music-cmd-6-usage); }
+
+        .econ-cmd-1 .command-name::after { content: var(--econ-cmd-1-name); }
+        .econ-cmd-1 .command-description::after { content: var(--econ-cmd-1-desc); }
+        .econ-cmd-1 .command-usage::after { content: var(--econ-cmd-1-usage); }
+
+        .econ-cmd-2 .command-name::after { content: var(--econ-cmd-2-name); }
+        .econ-cmd-2 .command-description::after { content: var(--econ-cmd-2-desc); }
+        .econ-cmd-2 .command-usage::after { content: var(--econ-cmd-2-usage); }
+
+        .econ-cmd-3 .command-name::after { content: var(--econ-cmd-3-name); }
+        .econ-cmd-3 .command-description::after { content: var(--econ-cmd-3-desc); }
+        .econ-cmd-3 .command-usage::after { content: var(--econ-cmd-3-usage); }
+
+        .econ-cmd-4 .command-name::after { content: var(--econ-cmd-4-name); }
+        .econ-cmd-4 .command-description::after { content: var(--econ-cmd-4-desc); }
+        .econ-cmd-4 .command-usage::after { content: var(--econ-cmd-4-usage); }
+
+        .econ-cmd-5 .command-name::after { content: var(--econ-cmd-5-name); }
+        .econ-cmd-5 .command-description::after { content: var(--econ-cmd-5-desc); }
+        .econ-cmd-5 .command-usage::after { content: var(--econ-cmd-5-usage); }
+
+        .econ-cmd-6 .command-name::after { content: var(--econ-cmd-6-name); }
+        .econ-cmd-6 .command-description::after { content: var(--econ-cmd-6-desc); }
+        .econ-cmd-6 .command-usage::after { content: var(--econ-cmd-6-usage); }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         /* Mobile responsive adjustments */
@@ -787,16 +1182,47 @@
             .entry-subtitle {
                 font-size: 1.2rem;
             }
+
+            .now-playing-popup {
+                width: 300px;
+                left: -350px;
+            }
+
+            .now-playing-popup.show {
+                left: 10px;
+            }
+
+            .custom-cursor, .cursor-trail {
+                display: none !important;
+            }
+
+            body * {
+                cursor: auto !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
     <!-- Entry Screen -->
     <div class="entry-screen" id="entryScreen" onclick="enterSite()">
         <div class="entry-content">
             <div class="entry-logo"></div>
             <div class="entry-subtitle"></div>
             <div class="entry-prompt">Press anywhere to enter</div>
+        </div>
+    </div>
+
+    <!-- Now Playing Popup -->
+    <div class="now-playing-popup" id="nowPlayingPopup">
+        <div class="now-playing-thumbnail"></div>
+        <div class="now-playing-info">
+            <div class="now-playing-title">Now Playing:</div>
+            <div class="now-playing-song"></div>
+            <div class="now-playing-artist"></div>
+            <div class="now-playing-requester"></div>
         </div>
     </div>
 
@@ -807,9 +1233,9 @@
     </audio>
 
     <div class="gradient-bg"></div>
-<div class="floating-shapes" id="particleContainer">
-    <!-- Particles will be generated by JavaScript -->
-</div>
+    <div class="floating-shapes" id="particleContainer">
+        <!-- Particles will be generated by JavaScript -->
+    </div>
 
     <nav id="navbar">
         <div class="container">
@@ -876,7 +1302,6 @@
         <div class="commands-container">
             <h2>Bot Commands</h2>
             
-            <!-- Category Tabs -->
             <div class="category-tabs">
                 <div class="category-tab active" onclick="showCategory('moderation')">Moderation</div>
                 <div class="category-tab" onclick="showCategory('fun')">Fun & Games</div>
@@ -888,35 +1313,35 @@
             <!-- Moderation Commands -->
             <div id="moderation" class="category-content active">
                 <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/ban</div>
-                        <div class="command-description">Ban a user from the server with optional reason and duration.</div>
-                        <div class="command-usage">/ban @user [reason] [duration]</div>
+                    <div class="command-card mod-cmd-1">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/kick</div>
-                        <div class="command-description">Kick a user from the server with an optional reason.</div>
-                        <div class="command-usage">/kick @user [reason]</div>
+                    <div class="command-card mod-cmd-2">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/mute</div>
-                        <div class="command-description">Temporarily mute a user in all channels.</div>
-                        <div class="command-usage">/mute @user [duration] [reason]</div>
+                    <div class="command-card mod-cmd-3">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/warn</div>
-                        <div class="command-description">Issue a warning to a user with automatic punishment escalation.</div>
-                        <div class="command-usage">/warn @user [reason]</div>
+                    <div class="command-card mod-cmd-4">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/purge</div>
-                        <div class="command-description">Delete multiple messages at once from a channel.</div>
-                        <div class="command-usage">/purge [amount] [@user]</div>
+                    <div class="command-card mod-cmd-5">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/automod</div>
-                        <div class="command-description">Configure automatic moderation settings for your server.</div>
-                        <div class="command-usage">/automod [setting] [value]</div>
+                    <div class="command-card mod-cmd-6">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
                 </div>
             </div>
@@ -924,35 +1349,35 @@
             <!-- Fun & Games Commands -->
             <div id="fun" class="category-content">
                 <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/trivia</div>
-                        <div class="command-description">Start a trivia game with questions from various categories.</div>
-                        <div class="command-usage">/trivia [category] [difficulty]</div>
+                    <div class="command-card fun-cmd-1">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/8ball</div>
-                        <div class="command-description">Ask the magic 8-ball a question and receive a mystical answer.</div>
-                        <div class="command-usage">/8ball [question]</div>
+                    <div class="command-card fun-cmd-2">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/meme</div>
-                        <div class="command-description">Get a random meme from popular subreddits.</div>
-                        <div class="command-usage">/meme [subreddit]</div>
+                    <div class="command-card fun-cmd-3">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/dice</div>
-                        <div class="command-description">Roll dice with customizable sides and quantity.</div>
-                        <div class="command-usage">/dice [sides] [quantity]</div>
+                    <div class="command-card fun-cmd-4">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/joke</div>
-                        <div class="command-description">Get a random joke to lighten the mood.</div>
-                        <div class="command-usage">/joke [category]</div>
+                    <div class="command-card fun-cmd-5">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/quote</div>
-                        <div class="command-description">Get an inspirational or funny quote.</div>
-                        <div class="command-usage">/quote [type]</div>
+                    <div class="command-card fun-cmd-6">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
                 </div>
             </div>
@@ -960,35 +1385,35 @@
             <!-- Utility Commands -->
             <div id="utility" class="category-content">
                 <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/serverinfo</div>
-                        <div class="command-description">Display detailed information about the current server.</div>
-                        <div class="command-usage">/serverinfo</div>
+                    <div class="command-card util-cmd-1">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/userinfo</div>
-                        <div class="command-description">Show information about a specific user or yourself.</div>
-                        <div class="command-usage">/userinfo [@user]</div>
+                    <div class="command-card util-cmd-2">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/reminder</div>
-                        <div class="command-description">Set a reminder that the bot will send you after a specified time.</div>
-                        <div class="command-usage">/reminder [time] [message]</div>
+                    <div class="command-card util-cmd-3">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/poll</div>
-                        <div class="command-description">Create a poll with multiple options for your server members.</div>
-                        <div class="command-usage">/poll [question] [option1] [option2]...</div>
+                    <div class="command-card util-cmd-4">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/avatar</div>
-                        <div class="command-description">Display a user's avatar in full resolution.</div>
-                        <div class="command-usage">/avatar [@user]</div>
+                    <div class="command-card util-cmd-5">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/translate</div>
-                        <div class="command-description">Translate text between different languages.</div>
-                        <div class="command-usage">/translate [language] [text]</div>
+                    <div class="command-card util-cmd-6">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
                 </div>
             </div>
@@ -996,35 +1421,35 @@
             <!-- Music Commands -->
             <div id="music" class="category-content">
                 <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/play</div>
-                        <div class="command-description">Play music from YouTube, Spotify, or other platforms.</div>
-                        <div class="command-usage">/play [song/url]</div>
+                    <div class="command-card music-cmd-1">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/skip</div>
-                        <div class="command-description">Skip the currently playing song.</div>
-                        <div class="command-usage">/skip</div>
+                    <div class="command-card music-cmd-2">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/queue</div>
-                        <div class="command-description">Display the current music queue.</div>
-                        <div class="command-usage">/queue</div>
+                    <div class="command-card music-cmd-3">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/pause</div>
-                        <div class="command-description">Pause or resume the current song.</div>
-                        <div class="command-usage">/pause</div>
+                    <div class="command-card music-cmd-4">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/volume</div>
-                        <div class="command-description">Adjust the music playback volume.</div>
-                        <div class="command-usage">/volume [0-100]</div>
+                    <div class="command-card music-cmd-5">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/playlist</div>
-                        <div class="command-description">Create and manage custom playlists.</div>
-                        <div class="command-usage">/playlist [create/add/remove] [name]</div>
+                    <div class="command-card music-cmd-6">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
                 </div>
             </div>
@@ -1032,35 +1457,35 @@
             <!-- Economy Commands -->
             <div id="economy" class="category-content">
                 <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/balance</div>
-                        <div class="command-description">Check your current balance and bank account.</div>
-                        <div class="command-usage">/balance [@user]</div>
+                    <div class="command-card econ-cmd-1">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/daily</div>
-                        <div class="command-description">Claim your daily reward and streak bonus.</div>
-                        <div class="command-usage">/daily</div>
+                    <div class="command-card econ-cmd-2">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/work</div>
-                        <div class="command-description">Work various jobs to earn money.</div>
-                        <div class="command-usage">/work [job]</div>
+                    <div class="command-card econ-cmd-3">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/shop</div>
-                        <div class="command-description">Browse and purchase items from the server shop.</div>
-                        <div class="command-usage">/shop [buy/sell] [item]</div>
+                    <div class="command-card econ-cmd-4">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/gamble</div>
-                        <div class="command-description">Try your luck with various gambling games.</div>
-                        <div class="command-usage">/gamble [game] [amount]</div>
+                    <div class="command-card econ-cmd-5">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
-                    <div class="command-card">
-                        <div class="command-name">/leaderboard</div>
-                        <div class="command-description">View the richest members in your server.</div>
-                        <div class="command-usage">/leaderboard [global/server]</div>
+                    <div class="command-card econ-cmd-6">
+                        <div class="command-name"></div>
+                        <div class="command-description"></div>
+                        <div class="command-usage"></div>
                     </div>
                 </div>
             </div>
@@ -1100,12 +1525,83 @@
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
                 </div>
-                <p>© 2025 YourBot. All rights reserved.</p>
+                <p>© 2025 comgirl. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Cursor system variables
+        let cursorTrailElements = [];
+        let mouseX = 0, mouseY = 0;
+
+        // Initialize custom cursor and trail
+        function initializeCursor() {
+            const cursorEnabled = getComputedStyle(document.documentElement)
+                .getPropertyValue('--cursor-enabled').trim() === 'true';
+            const trailEnabled = getComputedStyle(document.documentElement)
+                .getPropertyValue('--cursor-trail-enabled').trim() === 'true';
+            
+            if (!cursorEnabled) return;
+
+            const customCursor = document.getElementById('customCursor');
+            customCursor.classList.add('enabled');
+            document.body.classList.add('custom-cursor-enabled');
+
+            // Create trail elements if enabled
+            if (trailEnabled) {
+                const trailCount = parseInt(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--cursor-trail-count').trim()) || 8;
+
+                for (let i = 0; i < trailCount; i++) {
+                    const trailElement = document.createElement('div');
+                    trailElement.className = 'cursor-trail';
+                    document.body.appendChild(trailElement);
+                    cursorTrailElements.push({
+                        element: trailElement,
+                        x: 0,
+                        y: 0,
+                        delay: i * 50
+                    });
+                }
+            }
+
+            // Mouse move handler
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                // Update custom cursor position
+                customCursor.style.left = mouseX + 'px';
+                customCursor.style.top = mouseY + 'px';
+
+                // Update trail elements with delay
+                if (trailEnabled) {
+                    cursorTrailElements.forEach((trail, index) => {
+                        setTimeout(() => {
+                            trail.x = mouseX;
+                            trail.y = mouseY;
+                            trail.element.style.left = trail.x + 'px';
+                            trail.element.style.top = trail.y + 'px';
+                            trail.element.style.opacity = 1 - (index / cursorTrailElements.length);
+                        }, trail.delay);
+                    });
+                }
+            });
+
+            // Hide cursor when leaving window
+            document.addEventListener('mouseleave', () => {
+                customCursor.style.opacity = '0';
+                cursorTrailElements.forEach(trail => {
+                    trail.element.style.opacity = '0';
+                });
+            });
+
+            document.addEventListener('mouseenter', () => {
+                customCursor.style.opacity = '1';
+            });
+        }
+
         // Site entrance functionality
         function enterSite() {
             const entryScreen = document.getElementById('entryScreen');
@@ -1122,6 +1618,31 @@
             backgroundMusic.play().catch(e => {
                 console.log('Audio autoplay prevented:', e);
             });
+
+            // Show now playing popup if enabled
+            showNowPlayingPopup();
+        }
+
+        // Now Playing Popup functionality
+        function showNowPlayingPopup() {
+            const nowPlayingEnabled = getComputedStyle(document.documentElement)
+                .getPropertyValue('--now-playing-enabled').trim() === 'true';
+            
+            if (!nowPlayingEnabled) return;
+
+            const popup = document.getElementById('nowPlayingPopup');
+            const displayDuration = parseInt(getComputedStyle(document.documentElement)
+                .getPropertyValue('--now-playing-display-duration').trim()) || 6000;
+            
+            // Show popup after a short delay
+            setTimeout(() => {
+                popup.classList.add('show');
+                
+                // Hide popup after configured duration
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, displayDuration);
+            }, 800);
         }
 
         // Navbar scroll effect
@@ -1196,18 +1717,6 @@
             observer.observe(statsSection);
         }
 
-        // Add parallax effect to floating hearts
-        window.addEventListener('scroll', () => {
-            const hearts = document.querySelectorAll('.heart');
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            
-            hearts.forEach((heart, index) => {
-                const speed = (index + 1) * 0.3;
-                heart.style.transform = `translateY(${rate * speed}px)`;
-            });
-        });
-
         // Commands section functionality
         function showCategory(categoryName) {
             // Hide all category contents
@@ -1229,114 +1738,75 @@
             event.target.classList.add('active');
         }
 
-        // Easy function to add new commands
-        function addCommand(category, name, description, usage) {
-            const categoryContent = document.getElementById(category);
-            const commandsGrid = categoryContent.querySelector('.commands-grid');
-            
-            const commandCard = document.createElement('div');
-            commandCard.className = 'command-card';
-            commandCard.innerHTML = `
-                <div class="command-name">${name}</div>
-                <div class="command-description">${description}</div>
-                <div class="command-usage">${usage}</div>
-            `;
-            
-            commandsGrid.appendChild(commandCard);
-        }
+        // Particle system
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const particleCount = parseInt(getComputedStyle(document.documentElement)
+                .getPropertyValue('--particle-count').trim()) || 20;
+            const spawnDelay = parseFloat(getComputedStyle(document.documentElement)
+                .getPropertyValue('--particle-spawn-delay').trim()) || 0.4;
+            const driftRange = parseInt(getComputedStyle(document.documentElement)
+                .getPropertyValue('--particle-drift-range').trim()) || 100;
 
-// Particle system
-function createParticles() {
-    const container = document.getElementById('particleContainer');
-    const particleCount = parseInt(getComputedStyle(document.documentElement)
-        .getPropertyValue('--particle-count').trim()) || 20;
-    const spawnDelay = parseFloat(getComputedStyle(document.documentElement)
-        .getPropertyValue('--particle-spawn-delay').trim()) || 0.4;
-    const driftRange = parseInt(getComputedStyle(document.documentElement)
-        .getPropertyValue('--particle-drift-range').trim()) || 100;
-
-    function createSingleParticle() {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Random size
-        const sizes = ['small', 'medium', 'large'];
-        particle.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
-        
-        // Random appearance
-        const appearances = ['dim', 'bright', 'secondary', ''];
-        const appearance = appearances[Math.floor(Math.random() * appearances.length)];
-        if (appearance) particle.classList.add(appearance);
-        
-        // Random horizontal position
-        particle.style.left = Math.random() * 100 + '%';
-        
-        // Random horizontal drift
-        const randomDrift = (Math.random() - 0.5) * driftRange;
-        particle.style.setProperty('--random-x', randomDrift + 'px');
-        
-        // Random animation delay
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        
-        // Random animation duration (slight variation)
-        const baseDuration = parseFloat(getComputedStyle(document.documentElement)
-            .getPropertyValue('--particle-animation-duration').trim()) || 8;
-        const randomDuration = baseDuration + (Math.random() - 0.5) * 2;
-        particle.style.animationDuration = randomDuration + 's';
-        
-        container.appendChild(particle);
-        
-        // Remove particle after animation completes
-        setTimeout(() => {
-            if (particle.parentNode) {
-                particle.parentNode.removeChild(particle);
+            function createSingleParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size
+                const sizes = ['small', 'medium', 'large'];
+                particle.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
+                
+                // Random appearance
+                const appearances = ['dim', 'bright', 'secondary', ''];
+                const appearance = appearances[Math.floor(Math.random() * appearances.length)];
+                if (appearance) particle.classList.add(appearance);
+                
+                // Random horizontal position
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // Random horizontal drift
+                const randomDrift = (Math.random() - 0.5) * driftRange;
+                particle.style.setProperty('--random-x', randomDrift + 'px');
+                
+                // Random animation delay
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Random animation duration (slight variation)
+                const baseDuration = parseFloat(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--particle-animation-duration').trim()) || 8;
+                const randomDuration = baseDuration + (Math.random() - 0.5) * 2;
+                particle.style.animationDuration = randomDuration + 's';
+                
+                container.appendChild(particle);
+                
+                // Remove particle after animation completes
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, randomDuration * 1000);
             }
-        }, randomDuration * 1000);
-    }
-    
-    // Create initial particles
-    for (let i = 0; i < particleCount; i++) {
-        setTimeout(() => createSingleParticle(), i * spawnDelay * 1000);
-    }
-    
-    // Continuously spawn new particles
-    setInterval(() => {
-        createSingleParticle();
-    }, spawnDelay * 1000);
-}
-
-// Initialize particles when page loads
-document.addEventListener('DOMContentLoaded', createParticles);
-
-        // Easy function to add new categories
-        function addCategory(categoryId, categoryName, commands = []) {
-            // Add tab
-            const categoryTabs = document.querySelector('.category-tabs');
-            const newTab = document.createElement('div');
-            newTab.className = 'category-tab';
-            newTab.onclick = () => showCategory(categoryId);
-            newTab.textContent = categoryName;
-            categoryTabs.appendChild(newTab);
-
-            // Add content section
-            const commandsContainer = document.querySelector('.commands-container');
-            const newContent = document.createElement('div');
-            newContent.id = categoryId;
-            newContent.className = 'category-content';
-            newContent.innerHTML = '<div class="commands-grid"></div>';
             
-            // Insert before stats section
-            const statsSection = document.getElementById('stats');
-            commandsContainer.insertBefore(newContent, statsSection);
-
-            // Add commands to the new category
-            commands.forEach(cmd => {
-                addCommand(categoryId, cmd.name, cmd.description, cmd.usage);
-            });
+            // Create initial particles
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => createSingleParticle(), i * spawnDelay * 1000);
+            }
+            
+            // Continuously spawn new particles
+            setInterval(() => {
+                createSingleParticle();
+            }, spawnDelay * 1000);
         }
 
-        // Initialize site title from CSS variable
+        // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize particles
+            createParticles();
+            
+            // Initialize cursor
+            initializeCursor();
+            
+            // Set site title from CSS variable
             const configuredTitle = getComputedStyle(document.documentElement)
                 .getPropertyValue('--site-title').trim().replace(/"/g, '');
             if (configuredTitle) {
